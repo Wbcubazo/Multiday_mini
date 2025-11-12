@@ -11,7 +11,7 @@ class Creator_Writer:
     def call_llm(self, prompt, max_tokens=1500):
         if not LLM_KEY:
             return f"[LLM_MISSING] Would generate: {prompt[:300]}"
-        url = "https://api.openai.com/v1/chat/completions"
+        url = "https://openrouter.ai/api/v1"
         headers = {"Authorization": f"Bearer {LLM_KEY}"}
         payload = {"model":"gpt-4o-mini", "messages":[{"role":"user","content":prompt}], "max_tokens": max_tokens, "temperature":0.2}
         r = requests.post(url, headers=headers, json=payload, timeout=60)
